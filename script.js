@@ -1,4 +1,14 @@
 
+var score = 0;
+var questionIndex = 0;
+
+var timeEl = document.querySelector(".timer");
+var questionsDiv = document.querySelector(".questionsDiv");
+var btnEl = document.querySelector(".btn");
+var secondsLeft = 4;
+var holdInterval = 0;
+var ulCreate = document.createElement("ul");
+
 var questions = [
     {
         title: "Commonly used data types DO NOT include:",
@@ -28,47 +38,41 @@ var questions = [
 
 ];
 
-
-
-
-
-
-var questionEl = document.querySelector(".questions")
-var btnEl = document.querySelector(".btn")
-var secondsLeft = 4
-
-
-
-btnEl.addEventListener("click",setTime, src='quiz.html')
-
-var timeEl = document.querySelector(".timer")
-
-function setTime(){
-    var timerInterval = setInterval(function() {
+btnEl.addEventListener("click",function (){
+    
+    if (holdInterval === 0) {
+        holdInterval = setInterval(function (){
     secondsLeft--;
     timeEl.textContent = "time:" + secondsLeft;
 
     if (secondsLeft <= 0){
-        clearInterval(timerInterval);
-        timeEl = '';
+        clearInterval(holdInterval);
+        allDone();
+        timeEl.textContent = "time's up!";
     }
 }, 1000);
 }
+render(questionIndex);
+});
 
-const myQuestions = [
-    {
-      question: "Who invented JavaScript?",
-      answers: {
-        a: "Douglas Crockford",
-        b: "Sheryl Sandberg",
-        c: "Brendan Eich"
-      },
-      correctAnswer: "c"
+function render(questionIndex) {
+    // Clears existing data 
+    questionsDiv.innerHTML = "";
+    ulCreate.innerHTML = "";
+    // For loops to loop through all info in array
+    for (var i = 0; i < questions.length; i++) {
+        // Appends question title only
+        var userQuestion = questions[questionIndex].title;
+        var userChoices = questions[questionIndex].choices;
+        questionsDiv.textContent = userQuestion;
     }
 
-  ];
+    userChoices.forEach(function (newItem) {
+        var listItem = document.createElement("li");
+        listItem.textContent = newItem;
+        questionsDiv.appendChild(ulCreate);
+        ulCreate.appendChild(listItem);
+        listItem.addEventListener("click", (compare));
+    })
+}
 
-//function randomQuestion
-
-
-//var myQuestions = questionEl
