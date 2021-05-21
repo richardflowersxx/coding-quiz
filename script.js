@@ -5,9 +5,9 @@ var questionIndex = 0;
 var timeEl = document.querySelector(".timer");
 var questionsDiv = document.querySelector(".questionsDiv");
 var btnEl = document.querySelector(".btn");
-var secondsLeft = 4;
+var secondsLeft = 90;
 var holdInterval = 0;
-var ulCreate = document.createElement("ul");
+var ulCreate = document.querySelector(".choicesUl");
 
 var questions = [
     {
@@ -65,14 +65,20 @@ function render(questionIndex) {
         var userQuestion = questions[questionIndex].title;
         var userChoices = questions[questionIndex].choices;
         questionsDiv.textContent = userQuestion;
+    
     }
-
-    userChoices.forEach(function (newItem) {
+    console.log(userChoices)
+    console.log(questionIndex)
+    userChoices.forEach(function compare (newItem) {
         var listItem = document.createElement("li");
         listItem.textContent = newItem;
         questionsDiv.appendChild(ulCreate);
+
         ulCreate.appendChild(listItem);
-        listItem.addEventListener("click", (compare));
+        listItem.addEventListener("click",function compare(score){
+            
+        });
     })
+    
 }
 
