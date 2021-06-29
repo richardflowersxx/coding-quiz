@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>code quiz</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+  <meta charset="UTF-8">
+  <title>code quiz</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
 
 </head>
+
 <body>
   <main>
+
+    <section id="start-section">
+      <h1> coding quiz challenge</h1>
+      <p>Quiz...</p>
+      <p>
+        Try to answer all question corectly before the timer hit 0. <br> If the question is answered incorrectly time
+        will be taken off.
+      </p>
+      <button class="btn">start quiz</button>
       <h3 class="timer"></h3>
-    <div class="questionsDiv">
-        <h1> coding quiz challenge</h1>
-        <p>
-            Try to answer all question corectly before the timer hit 0. <br> If the question is answered incorrectly time will be taken off.
-        </p>
-        <ul class="choicesUl"></ul>
-        <button class="btn">start quiz</button>
-    </div>
-  </main> 
-  <script src="script.js"></script>  
+    </section>
+
+    <section class="questionsDiv">
+
+           <h6 id="user-question"></h6>
+           <button data-value="0" id="option1" class="btn btn-warning"></button>
+           <button data-value="1" id="options2" class="btn btn-primary"></button>
+           <button data-value="2" id="options3" class="btn btn-primary"></button>
+           <button data-value="3" id="options4" class="btn btn-primary"></button>
+    </section>
+
+    <section id="summary">
+      <h4>User Score:<span id="user-score"></span></h4>
+      <label>Enter User name</label>
+      <input id="user-name" type="text"/>
+      <button id="save-user" class="btn">Save User</button>
+    </section>
+  </main>
+  <script src="script.js"></script>
 </body>
+
 </html>
