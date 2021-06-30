@@ -1,7 +1,7 @@
 
 var score = 0;
 var questionIndex = 0;
-
+var result = document.getElementById("result");
 var timeEl = document.querySelector(".timer");
 var questionsDiv = document.querySelector(".questionsDiv");
 var summarySec = document.getElementById("summary");
@@ -103,6 +103,20 @@ function checkUserAnswer(){
     var userEntry = this.getAttribute("data-value")
     console.log(userEntry)
     if (userEntry == questions[questionIndex].answer){
+        console.log("you got it right")
+        score+=10
+        result.innerText ="You got it right! Score is"+score
         
+    }
+    else{
+        score-=5
+        result.innerText ="you got it wrong.. Score is"+score
+        console.log("Missed")
+    }
+    if (questionIndex< questions.length -1) {
+      questionIndex++;
+      render(questionIndex)
+    }else{
+        console.log("Score:",score)
     }
 }
