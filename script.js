@@ -12,7 +12,7 @@ var ulCreate = document.querySelector(".choicesUl");
 questionsDiv.style.display="none"
 summarySec.style.display = "none"
 var questionEle = document.getElementById("user-question");
-var option1 = document.getElementById("options`1");
+var option1 = document.getElementById("options1");
 var option2 = document.getElementById("options2")
 var option3 = document.getElementById("options3")
 var option4 = document.getElementById("options4")
@@ -44,7 +44,10 @@ var questions = [
     },
 
 ];
-
+option1.addEventListener("click",checkUserAnswer)
+option2.addEventListener("click",checkUserAnswer)
+option3.addEventListener("click",checkUserAnswer)
+option4.addEventListener("click",checkUserAnswer)
 btnEl.addEventListener("click",function (){
     
     if (holdInterval === 0) {
@@ -96,3 +99,10 @@ function render(questionIndex) {
     
 }
 
+function checkUserAnswer(){
+    var userEntry = this.getAttribute("data-value")
+    console.log(userEntry)
+    if (userEntry == questions[questionIndex].answer){
+        
+    }
+}
