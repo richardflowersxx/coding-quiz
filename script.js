@@ -13,9 +13,12 @@ questionsDiv.style.display="none"
 summarySec.style.display = "none"
 var questionEle = document.getElementById("user-question");
 var option1 = document.getElementById("options1");
-var option2 = document.getElementById("options2")
-var option3 = document.getElementById("options3")
+var option2 = document.getElementById("options2");
+var option3 = document.getElementById("options3");
 var option4 = document.getElementById("options4")
+var saveUser = document.getElementById("save-user")
+var usernameInput = document.getElementById("user-name")
+var userScore = document.getElementById("user-score")
 var questions = [
     {
         title: "Commonly used data types DO NOT include:",
@@ -118,5 +121,19 @@ function checkUserAnswer(){
       render(questionIndex)
     }else{
         console.log("Score:",score)
+        summarySec.style.display = "block"
+        saveUser.addEventListener("click",summary)
+        score.textContent = score * secondsLeft
     }
+}
+
+
+function summary(){
+    var user = usernameInput.value;
+    var scoreHistory = JSON.parse(localStorage.getItem("CodeQuiz") )|| []
+    scoreHistory.push({
+        user:user,
+        score:score * secondsLeft
+    })
+    localStorage.setItem("CodeQuiz",JSON.stringify(scoreHistory))
 }
