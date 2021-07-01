@@ -19,6 +19,7 @@ var option4 = document.getElementById("options4")
 var saveUser = document.getElementById("save-user")
 var usernameInput = document.getElementById("user-name")
 var userScore = document.getElementById("user-score")
+var scoreboard = document.getElementById("score-container")
 var questions = [
     {
         title: "Commonly used data types DO NOT include:",
@@ -121,9 +122,11 @@ function checkUserAnswer(){
       render(questionIndex)
     }else{
         console.log("Score:",score)
+        questionsDiv.style.display="none"
         summarySec.style.display = "block"
         saveUser.addEventListener("click",summary)
-        score.textContent = score * secondsLeft
+        userScore.textContent = score * (secondsLeft+1)
+        clearInterval(holdInterval);
     }
 }
 
@@ -136,4 +139,22 @@ function summary(){
         score:score * secondsLeft
     })
     localStorage.setItem("CodeQuiz",JSON.stringify(scoreHistory))
+    displayScoreBoard()
 }
+
+
+function displayScoreBoard(){
+    var scoreHistory = JSON.parse(localStorage.getItem("CodeQuiz") )|| []
+     var htmlTEXT =""
+     for(let i=0;i<scoreHistory.length;i++){
+         htmlTEXT += `<p>${scoreHistory[i].user} : ${scoreHistory[i].score}</p>`
+     }
+     if(htmlTEXT == ""){
+         scoreboard.innerHTML ="<h1>No previous score avilable</h1>"
+     }else{
+     scoreboard.innerHTML = htmlTEXT
+     }
+}
+
+
+displayScoreBoard()
